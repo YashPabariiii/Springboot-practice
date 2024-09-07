@@ -1,12 +1,23 @@
 package com.example.Yash_5806;
 
-public class Doctor implements Staff {
-    private String qualification;
-    private Nurse nurse;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-    public Doctor(String qualification){
-        this.qualification=qualification;
+import javax.annotation.PostConstruct;
+
+@Component
+@Scope(scopeName = "prototype")
+public class Doctor implements Staff, BeanNameAware {
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "qualification='" + qualification + '\'' +
+                '}';
     }
+
+    private String qualification;
 public void assist(){
     System.out.println("Doctor is assisitng");
 }
@@ -19,11 +30,12 @@ public void assist(){
         this.qualification = qualification;
     }
 
-    public Nurse getNurse() {
-        return nurse;
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("setBeanName class is called");
     }
-
-    public void setNurse(Nurse nurse) {
-        this.nurse = nurse;
+    @PostConstruct
+    public void postConstruct(){
+        System.out.println("Post Constructor is called");
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-// @Component
+ @Component
 @Scope(scopeName = "prototype")
 public class Doctor implements Staff, BeanNameAware {
 
